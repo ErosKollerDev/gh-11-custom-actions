@@ -62,21 +62,9 @@ jobs:
           path: ./dist
       - name: Output contents
         run: ls
-      # - name: Deploy site
-      #   id: deploy
-      #   uses: ./.github/actions/deploy-s3-javascript
-      #   env:
-      #     AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
-      #     AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
-      #   with:
-      #     bucket: gh-custom-action-static-website-eros
-      #     bucket-region: us-east-1
-      #     dist-folder: ./dist
-      # - name: Output website url
-      #   run: echo ${{ steps.deploy.outputs.website-url }}
-      - name: Deploy site with Docker
-        id: deploy-docker
-        uses: ./.github/actions/deploy-s3-docker
+      - name: Deploy site
+        id: deploy
+        uses: ./.github/actions/deploy-s3-javascript
         env:
           AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
           AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
@@ -85,4 +73,16 @@ jobs:
           bucket-region: us-east-1
           dist-folder: ./dist
       - name: Output website url
-        run: echo ${{ steps.deploy-docker.outputs.website-url }}
+        run: echo ${{ steps.deploy.outputs.website-url }}
+      # - name: Deploy site with Docker
+      #   id: deploy-docker
+      #   uses: ./.github/actions/deploy-s3-docker
+      #   env:
+      #     AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
+      #     AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+      #   with:
+      #     bucket: gh-custom-action-static-website-eros
+      #     bucket-region: us-east-1
+      #     dist-folder: ./dist
+      # - name: Output website url
+      #   run: echo ${{ steps.deploy-docker.outputs.website-url }}
