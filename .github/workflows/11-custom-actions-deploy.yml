@@ -65,7 +65,7 @@ jobs:
       - name: Deploy site
         run: echo "Deploying..."
   information:
-    needs: deploy
+    # needs: deploy
     runs-on: ubuntu-latest
     steps:
       - name: Deploy to S3
