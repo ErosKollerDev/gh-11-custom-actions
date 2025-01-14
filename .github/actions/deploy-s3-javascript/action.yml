@@ -11,6 +11,9 @@ inputs:
   dist-folder:
     description: "Dist folder"
     required: true
+outputs:
+  website-url:
+    description: "Website url"
 runs:
   using: "node16"
   main: "main.js"
