@@ -12,8 +12,9 @@ function run() {
 
     // 2) Upload to S3
     exec.exec(`aws s3 sync ${distFolder} s3://${bucket} --region ${bucketRegion}`);
-    //http://gh-custom-action-static-website-eros.s3-website-us-east-1.amazonaws.com
-    const websiteUrl = `https://${bucket}.s3-website-${bucketRegion}.amazonaws.com`;
+    //https://gh-custom-action-static-website-eros.s3-website-us-east-1.amazonaws.com
+    //https://gh-custom-action-static-website-eros.s3-website-us-east-1.amazonaws.com/
+    const websiteUrl = `http://${bucket}.s3-website-${bucketRegion}.amazonaws.com`;
     core.setOutput('website-url', websiteUrl);
 }
 
