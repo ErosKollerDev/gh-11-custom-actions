@@ -1,0 +1,24 @@
+name: Testing my memory
+on:
+  push:
+    branches:
+      - main-not-to-run
+  pull_request:
+    branches:
+      - main-not-to-run
+jobs:
+  testing-memory:
+    runs-on: ubuntu-24.04
+    steps:
+      - name: Get code
+        uses: actions/checkout@v4
+      - name: Test memory
+        run: npm run test
+  another-job:
+    needs: testing-memory
+    runs-on: ubuntu-24.04
+    steps:
+      - name: Get code
+        uses: actions/checkout@v4
+      - name: Lint code
+        run: npm run lint
