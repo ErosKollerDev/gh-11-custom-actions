@@ -2,7 +2,7 @@ name: Deployment
 on:
   push:
     branches:
-      - main
+      - main-not-to-run
 jobs:
   lint:
     runs-on: ubuntu-latest
